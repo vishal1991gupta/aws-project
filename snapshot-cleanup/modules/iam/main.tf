@@ -13,10 +13,6 @@ resource "aws_iam_role" "lambda_role" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_basic" {
-  role       = aws_iam_role.lambda_role.name
-  policy_arn = aws_iam_policy.lambda_role.arn
-}
 
 resource "aws_iam_role_policy" "ec2_snapshot_policy" {
   name = "ec2_snapshot_policy"
@@ -53,6 +49,11 @@ resource "aws_iam_role_policy" "ec2_snapshot_policy" {
       }
     ]
   })
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_basic" {
+  role       = aws_iam_role.lambda_role.name
+  policy_arn = aws_iam_role_policy.ec2_snapshot_policy.arn
 }
 
 output "lambda_role_arn" {
