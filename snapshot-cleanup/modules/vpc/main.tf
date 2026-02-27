@@ -1,5 +1,7 @@
 resource "aws_vpc" "lambda_vpc" {
   cidr_block = "10.0.0.0/16"
+  enable_dns_support   = true
+  enable_dns_hostnames = true
 }
 
 resource "aws_subnet" "private_subnet" {
@@ -25,7 +27,7 @@ resource "aws_vpc_endpoint" "ec2" {
   service_name      = "com.amazonaws.${var.aws_region}.ec2"
   vpc_endpoint_type = "Interface"
   
-  subnet_ids = aws_subnet.private_subnet.id
+  subnet_ids = [aws_subnet.private_subnet.id]
   
   security_group_ids = [aws_security_group.lambda_sg.id]
   
