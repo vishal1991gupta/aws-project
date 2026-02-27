@@ -36,7 +36,7 @@ resource "aws_lambda_function" "snapshot_cleanup" {
   }
 
   tags = {
-    Name        = "${var.lambda_name}"
+    Name        = var.lambda_name
     Environment = var.environment
     ManagedBy   = "Terraform"
     Purpose     = "EC2 Snapshot Cleanup"
