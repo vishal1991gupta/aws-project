@@ -98,9 +98,10 @@ You have to mention the vpc_config module when defining the Lambda resource bloc
     region = us-east-1
     AZ = us-east-1a
     cidr = 10.0.0.0/16
+    1 private subnet
     No NAT Gateway required - Using VPC Endpoint for EC2 API
     Daily execution at midnight UTC (via rate(1 day))
 
 ## How you would monitor the Lambda function's execution (e.g., CloudWatch Logs, CloudWatch Metrics). 
-    All Lambda execution logs are automatically sent to CloudWatch Logs
-    CloudWatch metrics can be set from the aws console directly based on duration and error
+    All Lambda execution logs are automatically sent to CloudWatch Logs.
+    CloudWatch metrics can be set from the aws console directly based on duration and error.
