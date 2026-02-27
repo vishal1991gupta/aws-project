@@ -14,8 +14,8 @@ resource "aws_iam_role" "lambda_role" {
 }
 
 resource "aws_iam_role_policy_attachment" "lambda_basic" {
-  role       = aws_iam_role.lambda.name
-  policy_arn = aws_iam_policy.lambda.arn
+  role       = aws_iam_role.lambda_role.name
+  policy_arn = aws_iam_policy.lambda_role.arn
 }
 
 resource "aws_iam_role_policy" "ec2_snapshot_policy" {
@@ -62,3 +62,4 @@ output "lambda_role_arn" {
 output "lambda_role_name" {
   value = aws_iam_role.lambda_role.name
 }
+

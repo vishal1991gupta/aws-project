@@ -94,7 +94,8 @@ confirm the access by running below command:-
 commit your code from visual studio to Git repository and pull the latest content on your local machine using below command:-
     git pull origin dev
 
-run below terraform commands in sequence in order to create the infra on AWS:-
+run below 
+terraform commands in sequence in order to create the infra on AWS:-
     terraform init
     terraform plan
     terraform apply
