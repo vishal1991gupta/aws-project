@@ -5,8 +5,11 @@ provider "aws" {
 
 # VPC Module - Creates VPC, subnets, and networking components
 module "vpc" {
-  source = "./modules/vpc"
-  aws_region = var.aws_region
+  source             = "./modules/vpc"
+  aws_region         = var.aws_region
+  vpc_cidr           = var.vpc_cidr
+  availability_zone  = var.availability_zone
+  private_subnet_cidr = var.private_subnet_cidr
 }
 
 # IAM Module - Creates IAM role and policies for Lambda

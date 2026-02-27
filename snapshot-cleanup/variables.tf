@@ -4,10 +4,27 @@ variable "aws_region" {
   default     = "us-east-1"
 }
 
+variable "vpc_cidr" {
+  description = "VPC CIDR block"
+  type        = string
+}
+
+variable "availability_zone" {
+  description = "Availability zone for VPC subnets"
+  type        = string
+}
+
+
+variable "private_subnet_cidr" {
+  description = "Private subnet CIDR blocks"
+  type        = string
+}
+
+
 variable "environment" {
   description = "Environment name"
   type        = string
-  default     = "Development"
+  default     = "dev"
 }
 
 
@@ -23,4 +40,8 @@ variable "lambda_timeout" {
   default     = 300
 }
 
+variable "tags" {
+  description = "Tags to apply to all resources"
+  type        = map(string)
+}
 
