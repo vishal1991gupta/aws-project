@@ -12,8 +12,6 @@ module "vpc" {
 # IAM Module - Creates IAM role and policies for Lambda
 module "iam" {
   source = "./modules/iam"
-  aws_region  = var.aws_region
-
 }
 
 # Package Lambda code
