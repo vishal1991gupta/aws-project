@@ -14,12 +14,6 @@ This project implements an AWS Lambda function that automatically deletes EC2 sn
 │ ┌─────────────┴─────────────┐ │
 │ │ │ │
 │ ▼ ▼ │
-│ ┌─────────────────────┐ ┌─────────────────────┐ │
-│ │ EC2 API │ │ CloudWatch │ │
-│ │ (List/Delete) │ │ Logs & Metrics │ │
-│ └──────────┬──────────┘ └─────────────────────┘ │
-│ │ │
-│ ▼ │
 │ ┌─────────────────────┐ │
 │ │ EBS Snapshots │ │
 │ │ (> 1 year old) │ │
@@ -33,31 +27,11 @@ This project implements an AWS Lambda function that automatically deletes EC2 sn
 │ │ │ │ Lambda Function ENI │ │ │ │
 │ │ │ └─────────────────────────────────────────┘ │ │ │
 │ │ └────────────────────────────────────────────────────┘ │ │
-│ │ │ │
-│ │ ┌────────────────────────────────────────────────────┐ │ │
-│ │ │ Private Subnet (AZ-b) │ │ │
-│ │ │ ┌─────────────────────────────────────────┐ │ │ │
-│ │ │ │ Lambda Function ENI │ │ │ │
-│ │ │ └─────────────────────────────────────────┘ │ │ │
-│ │ └────────────────────────────────────────────────────┘ │ │
-│ │ │ │
-│ │ ┌────────────────────────────────────────────────────┐ │ │
-│ │ │ VPC Endpoints │ │ │
-│ │ │ ┌─────────────────────────────────────────┐ │ │ │
-│ │ │ │ • EC2 Interface Endpoint │ │ │ │
-│ │ │ │ • EC2 Messages Endpoint │ │ │ │
-│ │ │ │ • S3 Gateway Endpoint │ │ │ │
-│ │ │ └─────────────────────────────────────────┘ │ │ │
-│ │ └────────────────────────────────────────────────────┘ │ │
-│ └────────────────────────────────────────────────────────────┘ │
-│ │
 │ ┌────────────────────────────────────────────────────────────┐ │
 │ │ IAM Role │ │
 │ │ ┌────────────────────────────────────────────────────┐ │ │
 │ │ │ • EC2: DescribeSnapshots, DeleteSnapshot │ │ │
 │ │ │ • EC2: Network Interface management │ │ │
-│ │ │ • CloudWatch Logs: CreateLogGroup, PutLogEvents │ │ │
-│ │ │ • X-Ray: PutTraceSegments (optional) │ │ │
 │ │ └────────────────────────────────────────────────────┘ │ │
 │ └────────────────────────────────────────────────────────────┘ │
 └─────────────────────────────────────────────────────────────────────┘
@@ -80,7 +54,7 @@ This project implements an AWS Lambda function that automatically deletes EC2 sn
 - **AWS CLI** installed and configured (`aws configure`)
 - **Terraform** >= 1.0 installed
 - **Git** for version control (optional)
-- **Python 3.11+** for local testing (optional)
+- **Python 3.9+** for local testing (optional)
 
 ## Deployment Instructions
 

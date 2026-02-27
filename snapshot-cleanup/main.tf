@@ -31,8 +31,8 @@ resource "aws_lambda_function" "snapshot_cleanup" {
   timeout          = 60
   
   vpc_config {
-    subnet_ids         = module.vpc.private_subnet_ids
-    security_group_ids = [module.vpc.lambda_security_group_id]
+    subnet_ids         = module.vpc.private_subnet_id
+    security_group_ids = [module.vpc.lambda_sg_id]
   }
 
   tags = {
