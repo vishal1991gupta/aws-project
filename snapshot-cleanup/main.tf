@@ -5,8 +5,11 @@ provider "aws" {
 
 # VPC Module - Creates VPC, subnets, and networking components
 module "vpc" {
-  source = "./modules/vpc"
-  aws_region = var.aws_region
+  source             = "./modules/vpc"
+  aws_region         = var.aws_region
+  vpc_cidr           = var.vpc_cidr
+  availability_zone  = var.availability_zone
+  private_subnet_cidr = var.private_subnet_cidr
 }
 
 # IAM Module - Creates IAM role and policies for Lambda
@@ -35,12 +38,7 @@ resource "aws_lambda_function" "snapshot_cleanup" {
     security_group_ids = [module.vpc.lambda_sg_id]
   }
 
-  tags = {
-    Name        = var.lambda_name
-    Environment = var.environment
-    ManagedBy   = "Terraform"
-    Purpose     = "EC2 Snapshot Cleanup"
-  }
+  tags = var.tags
 
   depends_on = [
     module.vpc,
@@ -54,10 +52,7 @@ resource "aws_cloudwatch_event_rule" "daily_trigger" {
   description         = "Trigger snapshot cleanup Lambda daily at midnight"
   schedule_expression = "rate(1 day)"
 
-  tags = {
-    Environment = var.environment
-    ManagedBy   = "Terraform"
-  }
+  tags = var.tags
 }
 
 resource "aws_cloudwatch_event_target" "lambda_target" {
